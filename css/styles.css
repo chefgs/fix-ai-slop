@@ -71,6 +71,74 @@ body {
   color: var(--text-muted);
 }
 
+/* ── How to use ────────────────────────────────────────────────────────── */
+.how-to {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.how-to-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.how-to-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.how-to-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.how-to-steps li div {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.how-to-steps li div strong {
+  color: var(--text-main);
+}
+
+.how-to-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-faint);
+  padding-top: 0.75rem;
+}
+
+.how-to-note strong {
+  color: var(--text-main);
+}
+
 /* ── URL input row ─────────────────────────────────────────────────────── */
 .url-row {
   background: var(--bg-card);
