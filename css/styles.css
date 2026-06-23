@@ -177,6 +177,30 @@ body {
   border-color: var(--blue);
 }
 
+.analyze-btn {
+  padding: 0.75rem 1.25rem;
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.analyze-btn:hover:not(:disabled),
+.analyze-btn:focus-visible {
+  opacity: 0.85;
+  outline: none;
+}
+
+.analyze-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .reset-btn {
   padding: 0.75rem 1.25rem;
   background: var(--bg-main);
@@ -195,6 +219,72 @@ body {
   border-color: var(--accent-slop);
   color: var(--accent-slop);
   outline: none;
+}
+
+/* ── Analyze status bar ─────────────────────────────────────────────────── */
+.analyze-status {
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.analyze-status[data-type="loading"] {
+  color: var(--text-muted);
+  background: var(--bg-card);
+}
+
+.analyze-status[data-type="success"] {
+  color: var(--accent-human);
+  background: #052e1633;
+  border-color: #065f4633;
+}
+
+.analyze-status[data-type="error"] {
+  color: var(--accent-slop);
+  background: #2d090933;
+  border-color: #7f1d1d33;
+}
+
+/* ── Auto-tag badge ─────────────────────────────────────────────────────── */
+.auto-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.auto-tag[data-state="auto"] {
+  background: #1e3a5f;
+  color: #93c5fd;
+  border: 1px solid #1d4ed833;
+}
+
+.auto-tag[data-state="override"] {
+  background: #451a03;
+  color: #fbbf24;
+  border: 1px solid #92400e44;
+}
+
+.auto-tag[data-state="needs-manual"],
+.auto-tag[data-state="manual-only"] {
+  background: var(--bg-main);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* ── Auto-detected reason line ──────────────────────────────────────────── */
+.auto-reason {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-style: italic;
+  margin-top: 0.3rem;
 }
 
 /* ── Audit category card ───────────────────────────────────────────────── */

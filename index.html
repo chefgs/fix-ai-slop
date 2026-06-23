@@ -29,29 +29,29 @@
       <li>
         <span class="step-number" aria-hidden="true">1</span>
         <div>
-          <strong>Enter the URL</strong> of the site you want to audit in the field below.
+          <strong>Enter the URL</strong> and click <strong>Analyze</strong> — the tool fetches the page and auto-scores 12 of 15 criteria.
         </div>
       </li>
       <li>
         <span class="step-number" aria-hidden="true">2</span>
         <div>
-          <strong>Open the site</strong> in a separate tab so you can inspect it while you work through the checklist.
+          <strong>Review auto-detected results</strong> — each criterion shows an <em>Auto</em> badge with the reason it was scored that way.
         </div>
       </li>
       <li>
         <span class="step-number" aria-hidden="true">3</span>
         <div>
-          <strong>Rate each criterion</strong> — toggle <em>Human</em> if the site does it well, <em>Slop</em> if it fails.
+          <strong>Override any result</strong> by toggling the Human / Slop button. Visual checks (whitespace, alignment, component logic) always need a manual eye.
         </div>
       </li>
       <li>
         <span class="step-number" aria-hidden="true">4</span>
         <div>
-          <strong>Read the fix suggestions</strong> that appear below the checklist for every item you mark as Slop.
+          <strong>Read the fix suggestions</strong> that appear for every Slop item — concrete, implementable steps to improve the site.
         </div>
       </li>
     </ol>
-    <p class="how-to-note">The score updates live. Hit <strong>Reset Form</strong> to start a fresh audit on a different site.</p>
+    <p class="how-to-note">The score updates live. Hit <strong>Reset</strong> to start a fresh audit on a different site.</p>
   </div>
 
   <!-- URL input -->
@@ -64,11 +64,13 @@
         placeholder="https://example.com"
         autocomplete="url"
         spellcheck="false"
-        aria-describedby="target-display"
+        aria-describedby="analyze-status"
       >
     </div>
-    <button type="button" id="reset-btn" class="reset-btn">Reset Form</button>
+    <button type="button" id="analyze-btn" class="analyze-btn">Analyze</button>
+    <button type="button" id="reset-btn" class="reset-btn">Reset</button>
   </div>
+  <div id="analyze-status" class="analyze-status" aria-live="polite" hidden></div>
 
   <main>
     <form id="audit-form" novalidate>
