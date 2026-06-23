@@ -1,5 +1,36 @@
 'use strict';
 
+// ── CORS proxies (tried in order until one succeeds) ─────────────────────
+const PROXIES = [
+  {
+    build:   (url) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+    extract: async (res) => { const d = await res.json(); if (!d.contents) throw new Error('empty'); return d.contents; },
+  },
+  {
+    build:   (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    extract: async (res) => res.text(),
+  },
+  {
+    build:   (url) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+    extract: async (res) => res.text(),
+  },
+];
+
+async function fetchHTML(targetUrl, signal) {
+  for (const proxy of PROXIES) {
+    try {
+      const res  = await fetch(proxy.build(targetUrl), { signal });
+      if (!res.ok) continue;
+      const html = await proxy.extract(res);
+      if (html && html.length > 200) return html;
+    } catch (err) {
+      if (err.name === 'AbortError') throw err;
+      // silent — try next proxy
+    }
+  }
+  throw new Error('All proxies failed. The site may be blocking automated access.');
+}
+
 // ── Fix suggestions ───────────────────────────────────────────────────────
 const FIXES = {
   q1:  { title: 'Fix typographic hierarchy',              detail: 'Establish a clear scale: H1 ≥ 2rem, H2 ≥ 1.5rem, body 1rem. Use typescale.com and enforce the scale system-wide.' },
@@ -21,8 +52,6 @@ const FIXES = {
 
 // Questions that require a visual inspection — auto-check not possible
 const MANUAL_ONLY = new Set(['q3', 'q6', 'q9']);
-
-const PROXY = 'https://api.allorigins.win/get?url=';
 
 // ── State ─────────────────────────────────────────────────────────────────
 const autoResults = {};      // { q1: { verdict, confidence, reason }, … }
@@ -91,19 +120,13 @@ async function analyze() {
 
   try {
     const controller = new AbortController();
-    const timer      = setTimeout(() => controller.abort(), 14000);
+    const timer      = setTimeout(() => controller.abort(), 20000);
 
-    const res = await fetch(`${PROXY}${encodeURIComponent(url)}`, {
-      signal: controller.signal,
-    });
+    showStatus('loading', 'Trying proxy 1 of 3…');
+    const html = await fetchHTML(url, controller.signal);
     clearTimeout(timer);
 
-    if (!res.ok) throw new Error(`Proxy returned HTTP ${res.status}`);
-
-    const data = await res.json();
-    if (!data.contents) throw new Error('Empty response — the site may have blocked the proxy.');
-
-    const doc     = new DOMParser().parseFromString(data.contents, 'text/html');
+    const doc     = new DOMParser().parseFromString(html, 'text/html');
     const results = runChecks(doc);
     applyResults(results);
 
