@@ -1,0 +1,473 @@
+/* ── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  --bg-main:      #0f172a;
+  --bg-card:      #1e293b;
+  --text-main:    #f8fafc;
+  --text-muted:   #94a3b8;
+  --accent-human: #10b981;
+  --accent-mixed: #f59e0b;
+  --accent-slop:  #ef4444;
+  --border:       #334155;
+  --border-faint: #3341554d;
+  --blue:         #3b82f6;
+  --radius-sm:    6px;
+  --radius-md:    12px;
+  --radius-lg:    16px;
+}
+
+/* ── Screen-reader only utility ────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  padding: 2rem 2rem 10rem;
+}
+
+/* ── Layout ────────────────────────────────────────────────────────────── */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+.site-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.site-header h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, var(--accent-human), var(--blue), var(--accent-slop));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.site-header p {
+  color: var(--text-muted);
+}
+
+/* ── URL input row ─────────────────────────────────────────────────────── */
+.url-row {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.url-row > div {
+  flex: 1;
+}
+
+.url-row label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.url-row input[type="url"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.url-row input[type="url"]:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.reset-btn {
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.reset-btn:hover,
+.reset-btn:focus-visible {
+  border-color: var(--accent-slop);
+  color: var(--accent-slop);
+  outline: none;
+}
+
+/* ── Audit category card ───────────────────────────────────────────────── */
+.category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Remove default fieldset styling */
+.category-card fieldset {
+  border: none;
+  padding: 0;
+  min-inline-size: 0;
+}
+
+.category-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+  color: #e2e8f0;
+}
+
+/* ── Audit item row ────────────────────────────────────────────────────── */
+.audit-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.audit-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.audit-info p {
+  font-weight: 500;
+}
+
+.audit-info span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* ── Radio toggle buttons ──────────────────────────────────────────────── */
+.radio-group {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 2px;
+}
+
+.radio-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0.5rem 1rem;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.radio-btn::before {
+  content: attr(data-label);
+}
+
+.radio-btn:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.radio-btn:hover:not(:checked) {
+  border-color: #64748b;
+  color: var(--text-main);
+}
+
+.radio-btn[value="human"]:checked {
+  background: #047857;
+  border-color: var(--accent-human);
+  color: #fff;
+}
+
+.radio-btn[value="slop"]:checked {
+  background: #b91c1c;
+  border-color: var(--accent-slop);
+  color: #fff;
+}
+
+/* ── Suggestions panel ─────────────────────────────────────────────────── */
+.suggestions-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: none;
+}
+
+.suggestions-panel.is-visible {
+  display: block;
+}
+
+.suggestions-panel h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+  color: #e2e8f0;
+}
+
+.suggestion-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-faint);
+  align-items: flex-start;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.suggestion-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-slop);
+  margin-top: 6px;
+}
+
+.suggestion-item p {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.suggestion-item span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+/* ── Sticky score widget ───────────────────────────────────────────────── */
+.score-widget {
+  position: sticky;
+  bottom: 1.5rem;
+  background: #1e293bfa;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid var(--border);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.score-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.score-left h2 {
+  font-size: 1.1rem;
+}
+
+.score-url {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.score-right {
+  text-align: right;
+}
+
+.score-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.score-verdict {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: color 0.3s ease;
+}
+
+.progress-bar-wrap {
+  height: 4px;
+  background: #334155;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+  width: 100px;
+  margin-left: auto;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 2px;
+  width: 100%;
+  transition: width 0.4s ease, background 0.4s ease;
+}
+
+/* ── Score verdict colour variants (state via data attribute) ──────────── */
+.score-widget[data-verdict="human"] .score-number,
+.score-widget[data-verdict="human"] .score-verdict { color: var(--accent-human); }
+.score-widget[data-verdict="human"] .progress-bar  { background: var(--accent-human); }
+
+.score-widget[data-verdict="mixed"] .score-number,
+.score-widget[data-verdict="mixed"] .score-verdict { color: var(--accent-mixed); }
+.score-widget[data-verdict="mixed"] .progress-bar  { background: var(--accent-mixed); }
+
+.score-widget[data-verdict="slop"] .score-number,
+.score-widget[data-verdict="slop"] .score-verdict  { color: var(--accent-slop); }
+.score-widget[data-verdict="slop"] .progress-bar   { background: var(--accent-slop); }
+
+/* ── Recommended Tools section ─────────────────────────────────────────── */
+.tools-section {
+  margin-top: 3rem;
+  padding-bottom: 8rem;
+}
+
+.tools-section-title {
+  font-size: 1.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.tools-section-desc {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+
+.tools-category {
+  margin-bottom: 2rem;
+}
+
+.tools-category-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.tool-card:hover,
+.tool-card:focus-visible {
+  border-color: var(--blue);
+  background: #1e3a5f33;
+  outline: none;
+}
+
+.tool-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.tool-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem 1rem 10rem;
+  }
+
+  .site-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .url-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .audit-item {
+    grid-template-columns: 1fr;
+  }
+
+  .score-widget {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .score-url {
+    max-width: 260px;
+  }
+
+  .progress-bar-wrap {
+    margin: 0.6rem auto 0;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

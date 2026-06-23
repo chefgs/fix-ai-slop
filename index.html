@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Audit any website for AI-generated slop patterns and get concrete, actionable fixes to make it look human-engineered.">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Design Authenticity Auditor">
+  <meta property="og:description" content="Identify AI slop patterns in any website and get a fix checklist.">
+  <meta property="og:type"        content="website">
+
+  <title>Design Authenticity Auditor — Find AI Slop</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+  <header class="site-header">
+    <h1>Design Authenticity Auditor</h1>
+    <p>Identify lazy AI-generated layouts and get concrete fixes to make any site feel human-engineered.</p>
+  </header>
+
+  <!-- URL input -->
+  <div class="url-row">
+    <div>
+      <label for="site-url">Target Website URL</label>
+      <input
+        type="url"
+        id="site-url"
+        placeholder="https://example.com"
+        autocomplete="url"
+        spellcheck="false"
+        aria-describedby="target-display"
+      >
+    </div>
+    <button type="button" id="reset-btn" class="reset-btn">Reset Form</button>
+  </div>
+
+  <main>
+    <form id="audit-form" novalidate>
+
+      <!-- ── 1. Typography & Content Layout ─────────────────────────── -->
+      <section class="category-card" aria-labelledby="cat-1-title">
+        <h2 class="category-title" id="cat-1-title">1. Typography &amp; Content Layout</h2>
+        <fieldset>
+          <legend class="sr-only">Typography &amp; Content Layout questions</legend>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q1">
+              <p>Visual Scale &amp; Sizing Hierarchy</p>
+              <span><b>Human:</b> Proportional font scale with clear H1/H2/H3 relationships. <b>Slop:</b> Messy sizes, no discernible typographic hierarchy.</span>
+            </div>
+            <div class="radio-group" data-question="q1" role="group" aria-labelledby="desc-q1">
+              <input type="radio" class="radio-btn" name="q1" value="human" data-label="Human" aria-label="Human — q1" checked>
+              <input type="radio" class="radio-btn" name="q1" value="slop"  data-label="Slop"  aria-label="Slop — q1">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q2">
+              <p>Text Line Length</p>
+              <span><b>Human:</b> Sub-800px text columns — comfortable reading width. <b>Slop:</b> Paragraphs stretch across the full screen width.</span>
+            </div>
+            <div class="radio-group" data-question="q2" role="group" aria-labelledby="desc-q2">
+              <input type="radio" class="radio-btn" name="q2" value="human" data-label="Human" aria-label="Human — q2" checked>
+              <input type="radio" class="radio-btn" name="q2" value="slop"  data-label="Slop"  aria-label="Slop — q2">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q3">
+              <p>Padding &amp; Whitespace Uniformity</p>
+              <span><b>Human:</b> Intentional, consistent margins and padding. <b>Slop:</b> Crammed elements or awkward accidental empty spaces.</span>
+            </div>
+            <div class="radio-group" data-question="q3" role="group" aria-labelledby="desc-q3">
+              <input type="radio" class="radio-btn" name="q3" value="human" data-label="Human" aria-label="Human — q3" checked>
+              <input type="radio" class="radio-btn" name="q3" value="slop"  data-label="Slop"  aria-label="Slop — q3">
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ── 2. Interactions & Behaviours ───────────────────────────── -->
+      <section class="category-card" aria-labelledby="cat-2-title">
+        <h2 class="category-title" id="cat-2-title">2. Interactions &amp; Behaviours</h2>
+        <fieldset>
+          <legend class="sr-only">Interactions &amp; Behaviours questions</legend>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q4">
+              <p>Interactive Feedback States</p>
+              <span><b>Human:</b> Clear hover, active, and focus styles on every control. <b>Slop:</b> Static links with no visual feedback on interaction.</span>
+            </div>
+            <div class="radio-group" data-question="q4" role="group" aria-labelledby="desc-q4">
+              <input type="radio" class="radio-btn" name="q4" value="human" data-label="Human" aria-label="Human — q4" checked>
+              <input type="radio" class="radio-btn" name="q4" value="slop"  data-label="Slop"  aria-label="Slop — q4">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q5">
+              <p>Responsive Window Adaptation</p>
+              <span><b>Human:</b> Reflows cleanly on mobile viewports. <b>Slop:</b> Broken grids, text clipping, or overlapping fields on resize.</span>
+            </div>
+            <div class="radio-group" data-question="q5" role="group" aria-labelledby="desc-q5">
+              <input type="radio" class="radio-btn" name="q5" value="human" data-label="Human" aria-label="Human — q5" checked>
+              <input type="radio" class="radio-btn" name="q5" value="slop"  data-label="Slop"  aria-label="Slop — q5">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q6">
+              <p>Logical Component Completeness</p>
+              <span><b>Human:</b> Fully built functional flows. <b>Slop:</b> Empty dropdowns, unclickable tabs, or dead search inputs.</span>
+            </div>
+            <div class="radio-group" data-question="q6" role="group" aria-labelledby="desc-q6">
+              <input type="radio" class="radio-btn" name="q6" value="human" data-label="Human" aria-label="Human — q6" checked>
+              <input type="radio" class="radio-btn" name="q6" value="slop"  data-label="Slop"  aria-label="Slop — q6">
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ── 3. Visual Design & Asset Integrity ─────────────────────── -->
+      <section class="category-card" aria-labelledby="cat-3-title">
+        <h2 class="category-title" id="cat-3-title">3. Visual Design &amp; Asset Integrity</h2>
+        <fieldset>
+          <legend class="sr-only">Visual Design &amp; Asset Integrity questions</legend>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q7">
+              <p>Icon Style Consistency</p>
+              <span><b>Human:</b> Unified stroke weights and styles throughout. <b>Slop:</b> Mixed outlined, filled, and generic shapes together.</span>
+            </div>
+            <div class="radio-group" data-question="q7" role="group" aria-labelledby="desc-q7">
+              <input type="radio" class="radio-btn" name="q7" value="human" data-label="Human" aria-label="Human — q7" checked>
+              <input type="radio" class="radio-btn" name="q7" value="slop"  data-label="Slop"  aria-label="Slop — q7">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q8">
+              <p>Graphics &amp; Asset Intent</p>
+              <span><b>Human:</b> Contextual, branded images that serve the content. <b>Slop:</b> Ultra-glossy, irrelevant AI-generated stock illustrations.</span>
+            </div>
+            <div class="radio-group" data-question="q8" role="group" aria-labelledby="desc-q8">
+              <input type="radio" class="radio-btn" name="q8" value="human" data-label="Human" aria-label="Human — q8" checked>
+              <input type="radio" class="radio-btn" name="q8" value="slop"  data-label="Slop"  aria-label="Slop — q8">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q9">
+              <p>Alignment Precision</p>
+              <span><b>Human:</b> Pixel-grid snapping throughout. <b>Slop:</b> Visually off-centre text inside boxes or misaligned buttons.</span>
+            </div>
+            <div class="radio-group" data-question="q9" role="group" aria-labelledby="desc-q9">
+              <input type="radio" class="radio-btn" name="q9" value="human" data-label="Human" aria-label="Human — q9" checked>
+              <input type="radio" class="radio-btn" name="q9" value="slop"  data-label="Slop"  aria-label="Slop — q9">
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ── 4. Content & Copy Quality ──────────────────────────────── -->
+      <section class="category-card" aria-labelledby="cat-4-title">
+        <h2 class="category-title" id="cat-4-title">4. Content &amp; Copy Quality</h2>
+        <fieldset>
+          <legend class="sr-only">Content &amp; Copy Quality questions</legend>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q10">
+              <p>Writing Voice &amp; Specificity</p>
+              <span><b>Human:</b> Distinct brand voice, concrete facts, named examples. <b>Slop:</b> Vague superlatives — "revolutionary", "cutting-edge", "seamless".</span>
+            </div>
+            <div class="radio-group" data-question="q10" role="group" aria-labelledby="desc-q10">
+              <input type="radio" class="radio-btn" name="q10" value="human" data-label="Human" aria-label="Human — q10" checked>
+              <input type="radio" class="radio-btn" name="q10" value="slop"  data-label="Slop"  aria-label="Slop — q10">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q11">
+              <p>Placeholder &amp; Filler Content</p>
+              <span><b>Human:</b> All sections have real, purposeful content. <b>Slop:</b> Lorem ipsum, placeholder images, or "Coming soon" blocks.</span>
+            </div>
+            <div class="radio-group" data-question="q11" role="group" aria-labelledby="desc-q11">
+              <input type="radio" class="radio-btn" name="q11" value="human" data-label="Human" aria-label="Human — q11" checked>
+              <input type="radio" class="radio-btn" name="q11" value="slop"  data-label="Slop"  aria-label="Slop — q11">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q12">
+              <p>Social Proof Authenticity</p>
+              <span><b>Human:</b> Real testimonials with full name, role, and photo. <b>Slop:</b> Generic avatars + AI-written praise with no attribution.</span>
+            </div>
+            <div class="radio-group" data-question="q12" role="group" aria-labelledby="desc-q12">
+              <input type="radio" class="radio-btn" name="q12" value="human" data-label="Human" aria-label="Human — q12" checked>
+              <input type="radio" class="radio-btn" name="q12" value="slop"  data-label="Slop"  aria-label="Slop — q12">
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ── 5. Performance & Technical Craft ───────────────────────── -->
+      <section class="category-card" aria-labelledby="cat-5-title">
+        <h2 class="category-title" id="cat-5-title">5. Performance &amp; Technical Craft</h2>
+        <fieldset>
+          <legend class="sr-only">Performance &amp; Technical Craft questions</legend>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q13">
+              <p>Page Load &amp; Asset Optimisation</p>
+              <span><b>Human:</b> Fast LCP, lazy-loaded images, minified assets. <b>Slop:</b> Huge unoptimised images, render-blocking scripts, slow TTFB.</span>
+            </div>
+            <div class="radio-group" data-question="q13" role="group" aria-labelledby="desc-q13">
+              <input type="radio" class="radio-btn" name="q13" value="human" data-label="Human" aria-label="Human — q13" checked>
+              <input type="radio" class="radio-btn" name="q13" value="slop"  data-label="Slop"  aria-label="Slop — q13">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q14">
+              <p>Accessibility Basics</p>
+              <span><b>Human:</b> Alt text, ARIA labels, full keyboard navigability. <b>Slop:</b> Missing alt attributes, low contrast, no visible focus ring.</span>
+            </div>
+            <div class="radio-group" data-question="q14" role="group" aria-labelledby="desc-q14">
+              <input type="radio" class="radio-btn" name="q14" value="human" data-label="Human" aria-label="Human — q14" checked>
+              <input type="radio" class="radio-btn" name="q14" value="slop"  data-label="Slop"  aria-label="Slop — q14">
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-info" id="desc-q15">
+              <p>Favicon &amp; Meta Completeness</p>
+              <span><b>Human:</b> Custom favicon, og:image, accurate meta description. <b>Slop:</b> Default browser icon, missing social previews, generic title tags.</span>
+            </div>
+            <div class="radio-group" data-question="q15" role="group" aria-labelledby="desc-q15">
+              <input type="radio" class="radio-btn" name="q15" value="human" data-label="Human" aria-label="Human — q15" checked>
+              <input type="radio" class="radio-btn" name="q15" value="slop"  data-label="Slop"  aria-label="Slop — q15">
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+    </form>
+
+    <!-- Suggested fixes — shown only when slop items exist -->
+    <section class="suggestions-panel" id="suggestions-panel" aria-live="polite" aria-label="Suggested fixes">
+      <h2>Suggested Fixes</h2>
+      <div id="suggestions-list"></div>
+    </section>
+
+  </main>
+
+  <!-- ── Recommended Tools ──────────────────────────────────────────────── -->
+  <section class="tools-section" aria-labelledby="tools-title">
+    <h2 class="tools-section-title" id="tools-title">Recommended Tools</h2>
+    <p class="tools-section-desc">The stack that separates considered design from AI-generated defaults.</p>
+
+    <!-- Design & Prototyping -->
+    <div class="tools-category">
+      <h3 class="tools-category-title">Design &amp; Prototyping</h3>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://figma.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Figma</span>
+          <span class="tool-desc">Industry-standard UI/UX design and prototyping. Component libraries, auto-layout, and dev handoff built in.</span>
+        </a>
+        <a class="tool-card" href="https://framer.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Framer</span>
+          <span class="tool-desc">Design-to-production site builder with real code output. No-compromise animations and interactions.</span>
+        </a>
+        <a class="tool-card" href="https://webflow.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Webflow</span>
+          <span class="tool-desc">Visual CSS editor that generates clean semantic markup. CMS and e-commerce built in.</span>
+        </a>
+        <a class="tool-card" href="https://penpot.app" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Penpot</span>
+          <span class="tool-desc">Open-source Figma alternative. Self-hostable, SVG-native, works with real CSS constraints.</span>
+        </a>
+        <a class="tool-card" href="https://getdesign.md/" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">GetDesign.md</span>
+          <span class="tool-desc">Curated design resources, tools, and references in one place. Good starting point for UX research and visual direction.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Typography & Fonts -->
+    <div class="tools-category">
+      <h3 class="tools-category-title">Typography &amp; Fonts</h3>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://typescale.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Typescale</span>
+          <span class="tool-desc">Generate a proportional modular type scale from a base size and ratio. Copy CSS variables directly.</span>
+        </a>
+        <a class="tool-card" href="https://fontpair.co" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Fontpair</span>
+          <span class="tool-desc">Curated Google Fonts pairings. Filters by style, mood, and contrast level.</span>
+        </a>
+        <a class="tool-card" href="https://fontjoy.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Fontjoy</span>
+          <span class="tool-desc">ML-powered font pairing generator. Adjustable contrast slider for heading vs body.</span>
+        </a>
+        <a class="tool-card" href="https://fontshare.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Fontshare</span>
+          <span class="tool-desc">High-quality, free professional fonts from ITF. Alternatives to overused Google Fonts defaults.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Colour -->
+    <div class="tools-category">
+      <h3 class="tools-category-title">Colour Systems</h3>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://coolors.co" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Coolors</span>
+          <span class="tool-desc">Fast palette generator with contrast checking, export to CSS variables, and collision detection.</span>
+        </a>
+        <a class="tool-card" href="https://www.radix-ui.com/colors" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Radix Colors</span>
+          <span class="tool-desc">12-step semantic colour scales designed for accessible dark and light modes out of the box.</span>
+        </a>
+        <a class="tool-card" href="https://realtimecolors.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Realtime Colors</span>
+          <span class="tool-desc">Preview your palette on an actual UI in real time. Exports Tailwind, CSS variables, and Figma tokens.</span>
+        </a>
+        <a class="tool-card" href="https://www.colorhunt.co" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Color Hunt</span>
+          <span class="tool-desc">Community-curated palette library. Filter by mood, season, or popularity.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Icons & Assets -->
+    <div class="tools-category">
+      <h3 class="tools-category-title">Icons &amp; Assets</h3>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://lucide.dev" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Lucide</span>
+          <span class="tool-desc">Consistent 2px-stroke icon library. 1 500+ icons, tree-shakeable, available as React/Vue/Svelte packages.</span>
+        </a>
+        <a class="tool-card" href="https://heroicons.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Heroicons</span>
+          <span class="tool-desc">Tailwind-authored icon set in outline and solid styles. Zero visual inconsistency within each set.</span>
+        </a>
+        <a class="tool-card" href="https://phosphoricons.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Phosphor Icons</span>
+          <span class="tool-desc">6 weights (thin → bold) from one family. Use one weight throughout and your UI reads as intentional.</span>
+        </a>
+        <a class="tool-card" href="https://squoosh.app" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Squoosh</span>
+          <span class="tool-desc">Browser-based image compression. Convert to WebP/AVIF and compare quality vs file size visually.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CSS & Component Libraries -->
+    <div class="tools-category">
+      <h3 class="tools-category-title">CSS &amp; Component Libraries</h3>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Tailwind CSS</span>
+          <span class="tool-desc">Utility-first framework that enforces a design system by default. Prevents arbitrary magic numbers.</span>
+        </a>
+        <a class="tool-card" href="https://ui.shadcn.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">shadcn/ui</span>
+          <span class="tool-desc">Copy-paste accessible components built on Radix primitives. You own the code — no black-box overrides.</span>
+        </a>
+        <a class="tool-card" href="https://open-props.style" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Open Props</span>
+          <span class="tool-desc">CSS custom property design tokens (spacing, easing, shadows, colours). Drop into any project.</span>
+        </a>
+        <a class="tool-card" href="https://daisyui.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">daisyUI</span>
+          <span class="tool-desc">Tailwind component library with 35 built-in themes. Semantic class names instead of utility soup.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Accessibility & Testing -->
+    <div class="tools-category">
+      <h3 class="tools-category-title">Accessibility &amp; Testing</h3>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://www.deque.com/axe/devtools/" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">axe DevTools</span>
+          <span class="tool-desc">Browser extension that audits WCAG violations inline in DevTools. Zero false positives by design.</span>
+        </a>
+        <a class="tool-card" href="https://wave.webaim.org" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">WAVE</span>
+          <span class="tool-desc">Visual accessibility evaluation. Overlays icons on the page showing errors, alerts, and structural issues.</span>
+        </a>
+        <a class="tool-card" href="https://pagespeed.web.dev" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">PageSpeed Insights</span>
+          <span class="tool-desc">Google's Lighthouse runner. Scores performance, accessibility, SEO, and best practices with field data.</span>
+        </a>
+        <a class="tool-card" href="https://www.webpagetest.org" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">WebPageTest</span>
+          <span class="tool-desc">Deep performance waterfall analysis. Real devices, real networks, filmstrip view of load progression.</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Design Inspiration -->
+    <div class="tools-category">
+      <h3 class="tools-category-title">Inspiration &amp; Reference</h3>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://mobbin.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Mobbin</span>
+          <span class="tool-desc">Real app UI screenshot library — searchable by screen type, pattern, and app category.</span>
+        </a>
+        <a class="tool-card" href="https://www.awwwards.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Awwwards</span>
+          <span class="tool-desc">Jury-selected award site showcasing best-in-class web design and interaction work.</span>
+        </a>
+        <a class="tool-card" href="https://screenlane.com" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Screenlane</span>
+          <span class="tool-desc">Mobile UI pattern library. Filter by component type (onboarding, nav, forms) or industry.</span>
+        </a>
+        <a class="tool-card" href="https://www.refero.design" target="_blank" rel="noopener noreferrer">
+          <span class="tool-name">Refero</span>
+          <span class="tool-desc">Searchable design pattern library across web and mobile. Includes interaction recordings.</span>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Sticky score widget -->
+  <div
+    class="score-widget"
+    id="score-widget"
+    role="status"
+    aria-live="polite"
+    aria-label="Quality score"
+    data-verdict="human"
+  >
+    <div class="score-left">
+      <h2>Quality Index</h2>
+      <div class="score-url" id="target-display">Enter a URL above to begin</div>
+    </div>
+    <div class="score-right">
+      <div class="score-number" id="score-number">100%</div>
+      <div class="score-verdict" id="score-verdict">Human Engineered</div>
+      <div class="progress-bar-wrap" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/audit.js" defer></script>
+</body>
+</html>
